@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking - GoRent</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Car Booking</h1>
+  <form id="bookingForm">
+    <label>Pickup Location: <input type="text" id="pickup" required></label><br>
+    <label>Dropoff Location: <input type="text" id="dropoff" required></label><br>
+    <label>From: <input type="datetime-local" id="from" required></label><br>
+    <label>To: <input type="datetime-local" id="to" required></label><br>
+    <button type="submit">Confirm Booking</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("bookingForm");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const car = urlParams.get("car");
+      const rate = urlParams.get("rate"); // carry rate forward
+
+      const pickup = document.getElementById("pickup").value;
+      const dropoff = document.getElementById("dropoff").value;
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+
+      const confirmationUrl =
+        `confirmation.html?car=${encodeURIComponent(car)}&rate=${rate}&pickup=${pickup}&dropoff=${dropoff}&from=${from}&to=${to}`;
+      window.location.href = confirmationUrl;
+    });
+  </script>
+</body>
+</html>

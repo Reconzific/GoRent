@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed - GoRent</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="confirmation-card">
+    <div class="checkmark">✔</div>
+    <h2>Booking Confirmed!</h2>
+    <p><b>Car:</b> <span id="car"></span></p>
+    <p><b>Pickup:</b> <span id="pickup"></span></p>
+    <p><b>Dropoff:</b> <span id="dropoff"></span></p>
+    <p><b>From:</b> <span id="from"></span></p>
+    <p><b>To:</b> <span id="to"></span></p>
+    <p><b>Total Amount:</b> <span id="total"></span></p>
+    <a href="car-listings.html" class="btn">Back to Car Listings</a>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const car = urlParams.get("car");
+    const rate = parseFloat(urlParams.get("rate")); // FIXED: number
+    const pickup = urlParams.get("pickup");
+    const dropoff = urlParams.get("dropoff");
+    const from = new Date(urlParams.get("from"));
+    const to = new Date(urlParams.get("to"));
+
+    // calculate days difference
+    const days = Math.ceil((to - from) / (1000 * 60 * 60 * 24));
+    const totalAmount = rate * (days > 0 ? days : 1); // at least 1 day
+
+    // update UI
+    document.getElementById("car").textContent = car;
+    document.getElementById("pickup").textContent = pickup;
+    document.getElementById("dropoff").textContent = dropoff;
+    document.getElementById("from").textContent = from.toLocaleString();
+    document.getElementById("to").textContent = to.toLocaleString();
+    document.getElementById("total").textContent = `₹${totalAmount}`;
+  </script>
+</body>
+</html>
