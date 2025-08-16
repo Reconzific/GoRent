@@ -61,9 +61,9 @@
 </head>
 <body>
 <div class="container fade-in">
-  <header style="display: flex; align-items: center; padding-bottom: 30px;">
+  <header>
     <img src="logo.jpg" alt="GoRent Logo" class="logo-image" />
-    <span class="logo" style="margin-left: 18px;">GoRent</span>
+    <span class="logo">GoRent</span>
   </header>
   <main>
     <!-- Landing Page Section -->
@@ -85,71 +85,19 @@
         <input id="reg-phone" type="tel" placeholder="Phone Number" autocomplete="tel" />
         <label for="reg-aadhar">Aadhar Number (optional)</label>
         <input id="reg-aadhar" type="text" placeholder="Aadhar Number (optional)" />
-        <button class="btn" onclick="startRegistration()">Register & Send OTP</button>
-        <p id="reg-error" class="error"></p>
-      </div>
-      <!-- OTP Section -->
-      <div id="otp-section" class="form-card hidden">
-        <div class="register-heading" style="text-align:center; margin-bottom:28px; font-size:2rem; font-weight:700;">Verify OTP</div>
-        <label for="otp-input">Enter OTP</label>
-        <input id="otp-input" type="text" placeholder="Enter OTP" />
-        <button class="btn" onclick="verifyOTP()">Verify OTP</button>
-        <p id="otp-error" class="error"></p>
-      </div>
-      <!-- Success Section -->
-      <div id="success-section" class="form-card hidden">
-        <div class="register-heading" style="text-align:center; margin-bottom:18px; font-size:2rem;">✅ Registration Successful!</div>
-        <p style="text-align: center; margin-bottom: 14px;">Welcome to GoRent.<br>Proceed to booking your ride.</p>
-        <button class="btn" onclick="finishBooking()">Proceed</button>
+        <button class="btn">Register</button>
+        <div class="error" id="register-error"></div>
       </div>
     </section>
   </main>
-  <footer style="text-align:center; margin-top: 40px;">© 2025 GoRent. All rights reserved.</footer>
+  <footer style="text-align:center; margin-top: 40px; color:#888;">
+    © 2025 GoRent. All rights reserved.
+  </footer>
 </div>
-
 <script>
-const app = { user: null, otp: null };
-function fadeOut(element) {
-  element.classList.add('fade-out');
-  setTimeout(() => element.classList.add('hidden'), 500);
-}
-function fadeIn(element) {
-  element.classList.remove('hidden');
-  element.classList.remove('fade-out');
-  element.classList.add('fade-in');
-}
 function startBooking() {
-  fadeOut(document.getElementById('landing-page'));
-  setTimeout(() => fadeIn(document.getElementById('registration-flow')), 500);
-}
-function startRegistration() {
-  const name = document.getElementById('reg-name').value.trim();
-  const email = document.getElementById('reg-email').value.trim();
-  const phone = document.getElementById('reg-phone').value.trim().replace(/\D/g, '');
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  if (!name || !emailRegex.test(email)) {
-    return (document.getElementById('reg-error').textContent = 'Please enter a valid name and email.');
-  }
-  if (!/^[6-9][0-9]{9}$/.test(phone)) {
-    return (document.getElementById('reg-error').textContent = 'Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.');
-  }
-  app.user = { name, email, phone };
-  app.otp = Math.floor(100000 + Math.random() * 900000).toString();
-  alert('OTP sent (for demo): ' + app.otp);
-  document.getElementById('reg-error').textContent = '';
-  fadeOut(document.getElementById('register-section'));
-  setTimeout(() => fadeIn(document.getElementById('otp-section')), 500);
-}
-function verifyOTP() {
-  const entered = document.getElementById('otp-input').value.trim();
-  if (entered !== app.otp) {
-    return (document.getElementById('otp-error').textContent = 'Invalid OTP. Try again.');
-  }
-  fadeOut(document.getElementById('otp-section'));
-  setTimeout(() => fadeIn(document.getElementById('success-section')), 500);
-}
-function finishBooking() {
-  window.location.href = 'car-listings.html';
+  // Placeholder for booking logic
+  alert("Booking flow not implemented in this demo.");
 }
 </script>
 </body>
