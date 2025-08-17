@@ -1,64 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GoRent - Available Cars</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GoRent - Car Listings</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container fade-in">
-    <header>
-      <span class="logo">GoRent</span>
-      <nav>
-        <a href="juh.html">Home</a>
-        <a href="car-listings.html" class="active">Cars</a>
-        <a href="booking.html">Book</a>
-        <a href="#">Contact</a>
-      </nav>
-    </header>
+  <h1>Available Cars</h1>
+  <div class="car-listings">
+    <div class="car-card">
+      <h3>Honda City</h3>
+      <p>₹1500/day</p>
+      <a href="booking.html?car=Honda%20City&rate=1500" class="btn">Book Now</a>
+    </div>
 
-    <main>
-      <h1>Available Cars</h1>
-      <div id="car-listings" class="car-listings"></div>
-      <div id="loading" class="loading-message">Loading cars...</div>
-      <div id="empty" class="empty-message hidden">No cars available at the moment.</div>
-    </main>
+    <div class="car-card">
+      <h3>Hyundai Creta</h3>
+      <p>₹2000/day</p>
+      <a href="booking.html?car=Hyundai%20Creta&rate=2000" class="btn">Book Now</a>
+    </div>
+
+    <div class="car-card">
+      <h3>Maruti Swift</h3>
+      <p>₹1200/day</p>
+      <a href="booking.html?car=Maruti%20Swift&rate=1200" class="btn">Book Now</a>
+    </div>
+
+    <div class="car-card">
+      <h3>BMW 5 Series</h3>
+      <p>₹8000/day</p>
+      <a href="booking.html?car=BMW%205%20Series&rate=8000" class="btn">Book Now</a>
+    </div>
   </div>
-
-<script>
-const loadingElem = document.getElementById('loading');
-const emptyElem = document.getElementById('empty');
-const carContainer = document.getElementById('car-listings');
-
-fetch('http://localhost:5000/api/cars')
-  .then(res => res.json())
-  .then(cars => {
-    loadingElem.classList.add('hidden');
-    if (!cars.length) {
-      emptyElem.classList.remove('hidden');
-      return;
-    }
-    cars.forEach(car => {
-      const card = document.createElement('div');
-      card.className = 'car-card fade-in';
-
-      card.innerHTML = `
-        <img src="${car.image_url || 'default-car.png'}" alt="${car.name}" class="car-image" />
-        <h3>${car.name}</h3>
-        <p>Type: ${car.type}</p>
-        <p>Price: ₹${car.price} / day</p>
-        <p>Available: ${car.avail ? 'Yes' : 'No'}</p>
-        <button class="book-btn" onclick="location.href='booking.html?car=${encodeURIComponent(car.name)}&rate=${car.price}'">
-          Book Now
-        </button>
-      `;
-      carContainer.appendChild(card);
-    });
-  })
-  .catch(() => {
-    loadingElem.textContent = 'Failed to load cars. Please try again later.';
-  });
-</script>
 </body>
 </html>
