@@ -40,13 +40,28 @@ body {
   margin-right: 16px;
 }
 
-header {
+
+.header {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-bottom: 30px;
-  gap: 0.8rem;
+  align-items: center;   
+  gap: 10px;            
+  padding: 20px;
 }
+
+
+.logo-image {
+  width: 40px;       
+  height: 40px;
+  object-fit: contain;  
+}
+
+/* Logo text */
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0066ff;      
+}
+
 
 nav {
   margin-left: auto;
@@ -253,3 +268,4 @@ form input:focus {
   color: #888;
   margin-top: 40px;
 }
+
