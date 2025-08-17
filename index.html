@@ -57,6 +57,17 @@
     font-size: 0.98rem;
     text-align: center;
   }
+  /* Added logo container for center alignment and margin */
+  .logo-container {
+    text-align: center;
+    margin: 48px 0 48px 0;
+  }
+  .logo-container img {
+    width: 120px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,86,214,0.10);
+  }
 </style>
 </head>
 <body>
@@ -68,6 +79,12 @@
   <main>
     <!-- Landing Page Section -->
     <section id="landing-page" class="landing-center fade-in">
+
+      <!-- Logo at top center -->
+      <div class="logo-container">
+        <img src="GoRent.jpg" alt="GoRent Logo"/>
+      </div>
+
       <h1 style="font-size: 2.7rem; margin: 40px 0 12px; color: #222;">Rent Cars & Bikes Instantly.</h1>
       <p class="tagline" style="text-align: center; margin-bottom: 30px;">Go Anywhere. Rent Anytime.</p>
       <button class="cta-btn" onclick="startBooking()" style="width: 80%; max-width: 340px;">Start Booking</button>
@@ -106,7 +123,6 @@
   </main>
   <footer style="text-align:center; margin-top: 40px;">© 2025 GoRent. All rights reserved.</footer>
 </div>
-
 <script>
 const app = { user: null, otp: null };
 function fadeOut(element) {
